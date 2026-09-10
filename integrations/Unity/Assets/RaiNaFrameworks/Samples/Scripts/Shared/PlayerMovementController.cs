@@ -44,7 +44,7 @@ namespace RaiNa.Unity.Samples.Shared
                 }
             }
             
-            _rigidbody.velocity = new Vector2(moveInput * _speed, _rigidbody.velocity.y);
+            _rigidbody.linearVelocity = new Vector2(moveInput * _speed, _rigidbody.linearVelocity.y);
         }
         
         private void HandleJump()
@@ -53,7 +53,7 @@ namespace RaiNa.Unity.Samples.Shared
             
             if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
             {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+                _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, _jumpForce);
             }
         }
         

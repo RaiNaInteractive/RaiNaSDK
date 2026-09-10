@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="com.rainainteractive.unity.csproj" />
+  <Project Path="com.rainainteractive.unity.samples.csproj" />
+</Solution>

@@ -1,10 +1,10 @@
-# <p align="center" style="color: green;">🎮 RaiNa Frameworks 🎮</p>
+# <p align="center" style="color: green;">🎮 RaiNaSDK 🎮</p>
 
 > ⚠️ **Experimental** — This project is in active early development. Architecture and APIs will change without notice.
 
 ## ✨ Introduction
 
-🌙 **RaiNa Frameworks** is a collection of lightweight frameworks, architectural patterns, helper utilities, and reusable building blocks designed specifically for Beginner game developers who want to build projects faster and more comfortably ✨
+🌙 **RaiNaSDK** is a collection of lightweight frameworks, architectural patterns, helper utilities, and reusable building blocks. ✨
 
 This toolkit focuses on keeping everything:
 
@@ -13,14 +13,14 @@ This toolkit focuses on keeping everything:
 - 🧩 Easy to understand  
 - 🚀 Scalable for larger projects  
 
-The goal of RaiNa Frameworks is to provide small but practical building blocks that developers can easily integrate, customize, and expand within their own Unity workflows 💻🐾
+The goal of RaiNaSDK is to provide small but practical building blocks that developers can easily integrate, customize, and expand within their own workflows 💻🐾
 
 ---
 ## 🔗 Unity Integration
 
-This repository contains the platform-agnostic core of the RaiNa Frameworks ecosystem.
+This repository contains the platform-agnostic core of the RaiNaSDK ecosystem.
 
-For Unity developers, an additional package built on top of **RaiNa.Core** is available, providing Unity-specific implementations, integrations, and runtime components such as:
+For Unity developers, an additional package built on top of **RaiNaSDK** is available, providing Unity-specific implementations, integrations, and runtime components such as:
 
 - 🌏 Scene Management
 - 📦 Asset Management
@@ -28,83 +28,7 @@ For Unity developers, an additional package built on top of **RaiNa.Core** is av
 - 🔨 Editor Tooling
 - 🧰 Unity Runtime Utilities
 
-These features are distributed through the Unity integration package and reference **RaiNa.Core** as their foundation.
-
----
-## 💾 Sample Usage - State Machine on Unity
-```cs
-    public class RaiNaStateMachine : MonoBehaviour, IStateContext
-    {
-        public readonly string Context = "RaiNa";
-
-        private StateMachineSubsystem _subsystem;
-        private StateMachine<RaiNaStateMachine> _machine;
-
-        private void Awake()
-        {
-            // Create the subsystem that will drive the state-machine updates.
-            _subsystem = new();
-            StateMachineScheduler.RegisterSubsystem(_subsystem);
-
-            // Create the machine and register it with the subsystem.
-            _machine = new(this, _subsystem);
-            _subsystem.Register(_machine);
-        }
-
-        private void OnEnable()
-        {
-            // Enable the machine and its subsystem when the component becomes active.
-            _machine.Enable();
-            _subsystem.Enable();
-        }
-
-        private void OnDisable()
-        {
-            // Disable the machine and its subsystem when the component is disabled.
-            _machine.Disable();
-            _subsystem.Disable();
-        }
-
-        private void Update()
-        {
-            // Press A/S/D to switch to different states.
-            if (Input.GetKeyDown(KeyCode.A))
-                _machine.ChangeState(new RedLight());
-            if (Input.GetKeyDown(KeyCode.S))
-                _machine.ChangeState(new YellowLight());
-            if (Input.GetKeyDown(KeyCode.D))
-                _machine.ChangeState(new GreenLight());
-        }
-
-        private void OnDestroy()
-        {
-            // Clean up the machine and subsystem when the object is destroyed.
-            _machine?.Dispose();
-            _subsystem?.Dispose();
-        }
-    }
-
-    public class RedLight : IState<RaiNaStateMachine>
-    {
-        public void OnEnter(in RaiNaStateMachine ctx) => Debug.Log($"{ctx.Context} Enter : {this}");
-        public void OnExit(in RaiNaStateMachine ctx) => Debug.Log($"Leaving : {this}");
-        public void OnUpdate(in RaiNaStateMachine ctx, float deltaTime) { }
-    }
-
-    public class YellowLight : IState<RaiNaStateMachine>
-    {
-        public void OnEnter(in RaiNaStateMachine ctx) => Debug.Log($"{ctx.Context} Enter : {this}");
-        public void OnExit(in RaiNaStateMachine ctx) => Debug.Log($"Leaving : {this}");
-        public void OnUpdate(in RaiNaStateMachine ctx, float deltaTime) { }
-    }
-
-    public class GreenLight : IState<RaiNaStateMachine>
-    {
-        public void OnEnter(in RaiNaStateMachine ctx) => Debug.Log($"{ctx.Context} Enter : {this}");
-        public void OnExit(in RaiNaStateMachine ctx) => Debug.Log($"Leaving : {this}");
-        public void OnUpdate(in RaiNaStateMachine ctx, float deltaTime) { }
-    }
-```
+These features are distributed through the Unity integration package and reference **RaiNaSDK** as their foundation.
 
 ---
 ## 📜 License
